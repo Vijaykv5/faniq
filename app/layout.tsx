@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Whispo | Live Fan Raids",
-  description: "A country-first TxLINE soccer feed demo for live match signals and raid receipts.",
+  title: "Last Fan Standing | World Cup Battle Royale",
+  description: "A TxLINE-powered live survival game for every World Cup match.",
 };
 
 export default function RootLayout({

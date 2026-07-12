@@ -50,6 +50,158 @@ button:disabled {
   line-height: 1;
 }
 
+.stadium-card {
+  box-shadow:
+    0 24px 80px rgba(8, 145, 178, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.stadium-bowl {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(103, 232, 249, 0.22);
+  background:
+    radial-gradient(ellipse at center, rgba(15, 118, 110, 0.24), transparent 38%),
+    radial-gradient(ellipse at center, rgba(8, 47, 73, 0.58), rgba(2, 6, 23, 0.95) 68%);
+}
+
+.stadium-bowl::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 9999px;
+  box-shadow: 0 0 80px rgba(34, 211, 238, 0.12);
+}
+
+.fan-grid {
+  position: absolute;
+  inset: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 0.45rem;
+  opacity: 0.96;
+}
+
+.fan-dot {
+  aspect-ratio: 1;
+  width: 0.42rem;
+  justify-self: center;
+  align-self: center;
+  border-radius: 9999px;
+}
+
+.fan-dot-alive {
+  background: #67e8f9;
+  box-shadow: 0 0 12px rgba(103, 232, 249, 0.86);
+}
+
+.fan-dot-dead {
+  background: #475569;
+  opacity: 0.45;
+}
+
+.fan-dot-ghost {
+  background: #c4b5fd;
+  box-shadow: 0 0 12px rgba(196, 181, 253, 0.72);
+}
+
+.pitch {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  display: flex;
+  height: 42%;
+  width: 48%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(190, 242, 100, 0.36);
+  background:
+    linear-gradient(90deg, rgba(22, 101, 52, 0.78), rgba(20, 83, 45, 0.92)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 3.5rem);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.pitch-line {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(255, 255, 255, 0.32) 50%, transparent calc(50% + 1px)),
+    radial-gradient(circle at center, transparent 0 2.3rem, rgba(255, 255, 255, 0.28) 2.4rem, transparent 2.5rem);
+}
+
+.survivor-platform {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  background: rgba(2, 6, 23, 0.68);
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+}
+
+.survival-arena {
+  position: relative;
+  min-height: 31rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(8, 145, 178, 0.22), transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.2), rgba(2, 6, 23, 0.96) 72%);
+}
+
+.survival-stands {
+  position: absolute;
+  inset: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  gap: 0.42rem;
+}
+
+.survival-dot {
+  aspect-ratio: 1;
+  width: 0.42rem;
+  justify-self: center;
+  align-self: center;
+  border-radius: 9999px;
+}
+
+.survival-dot-alive {
+  background: #67e8f9;
+  box-shadow: 0 0 12px rgba(103, 232, 249, 0.86);
+}
+
+.survival-dot-out {
+  background: #475569;
+  opacity: 0.4;
+}
+
+.survival-dot-ghost {
+  background: #c4b5fd;
+  box-shadow: 0 0 12px rgba(196, 181, 253, 0.72);
+}
+
+.survival-pitch {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(32rem, calc(100% - 2rem));
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  border: 1px solid rgba(190, 242, 100, 0.26);
+  background: rgba(2, 6, 23, 0.84);
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.62);
+}
+
 .site-backdrop {
   position: fixed;
   inset: 0;
