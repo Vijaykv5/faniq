@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
+  --background: #000000;
   --foreground: #f8fafc;
 }
 
@@ -17,7 +17,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family:
-    "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
   font-weight: 500;
 }
 
@@ -28,6 +28,520 @@ button {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+.primary-wallet-button,
+.hero-primary-action,
+.launch-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #ffffff;
+  color: #050505;
+  box-shadow: 0 18px 54px rgba(255, 255, 255, 0.08);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.primary-wallet-button:hover,
+.hero-primary-action:hover,
+.launch-button:hover {
+  background: #f3f3f3;
+  border-color: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.primary-wallet-button {
+  min-height: 2.5rem;
+  border-radius: 9999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.hero-primary-action,
+.hero-secondary-action,
+.launch-button {
+  min-height: 2.8rem;
+  border-radius: 9999px;
+  padding: 0.62rem 1.35rem;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.hero-primary-action {
+  border-color: rgba(251, 191, 36, 0.95);
+  background: #f7b733;
+  color: #090909;
+  box-shadow: 0 0 70px rgba(251, 191, 36, 0.22);
+}
+
+.hero-primary-action:hover {
+  border-color: rgba(252, 211, 77, 0.95);
+  background: #fcd34d;
+}
+
+.hero-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.045);
+  color: #ffffff;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.hero-secondary-action:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #f6b637;
+}
+
+.section-rule::before {
+  content: "";
+  display: inline-block;
+  width: 2.4rem;
+  height: 1px;
+  background: rgba(246, 182, 55, 0.84);
+}
+
+.hero-kicker {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 0.48rem 0.78rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.atlas-display {
+  font-family:
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.atlas-logo-mark {
+  position: relative;
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.25rem;
+}
+
+.atlas-logo-mark::before,
+.atlas-logo-mark::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  background: #ffffff;
+  transform-origin: bottom center;
+}
+
+.atlas-logo-mark::before {
+  left: 0.15rem;
+  bottom: 0.08rem;
+  width: 0.4rem;
+  height: 1.22rem;
+  transform: rotate(38deg);
+}
+
+.atlas-logo-mark::after {
+  right: 0.12rem;
+  bottom: 0.08rem;
+  width: 0.4rem;
+  height: 1.22rem;
+  transform: rotate(-38deg);
+}
+
+.atlas-logo-mark {
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.12));
+}
+
+.score-strip {
+  position: fixed;
+  inset-inline: 0;
+  top: 3.5rem;
+  z-index: 35;
+  height: 2.35rem;
+  overflow: hidden;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(20px);
+}
+
+.score-strip-inner {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.score-strip-track {
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.score-strip-track::-webkit-scrollbar {
+  display: none;
+}
+
+.score-marquee {
+  display: flex;
+  height: 100%;
+  min-width: max-content;
+  align-items: center;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.score-marquee-moving {
+  animation: score-marquee-slide 18s linear infinite;
+}
+
+.score-marquee-group {
+  display: flex;
+  height: 100%;
+  min-width: max-content;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4.25rem;
+  padding-right: 4.25rem;
+}
+
+.score-match {
+  display: inline-flex;
+  height: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.82rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.score-match-muted {
+  color: rgba(255, 255, 255, 0.48);
+  letter-spacing: 0.08em;
+}
+
+.score-flag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.score-vs {
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+
+.score-value {
+  color: rgba(246, 182, 55, 0.88);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+
+@keyframes score-marquee-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.hero-glow-amber {
+  top: 24%;
+  left: 46%;
+  width: 30rem;
+  height: 30rem;
+  background: rgba(251, 191, 36, 0.26);
+}
+
+.hero-glow-purple {
+  left: 22%;
+  bottom: 16%;
+  width: 24rem;
+  height: 24rem;
+  background: rgba(147, 51, 234, 0.28);
+}
+
+.hero-glow-green {
+  right: 16%;
+  bottom: 12%;
+  width: 28rem;
+  height: 28rem;
+  background: rgba(16, 185, 129, 0.16);
+}
+
+.step-card,
+.story-panel,
+.memory-card,
+.cta-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    #101010;
+  box-shadow:
+    0 32px 100px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.step-card,
+.story-panel,
+.memory-card {
+  border-radius: 1.15rem;
+  padding: 1.5rem;
+}
+
+.step-card {
+  display: flex;
+  min-height: 16rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step-number {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(246, 182, 55, 0.46);
+  background: rgba(246, 182, 55, 0.1);
+  color: #f6b637;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.memory-row {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.018);
+  padding: 0.65rem 0.85rem;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.stat-box {
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.018);
+  padding: 0.9rem;
+}
+
+.cta-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: 24rem;
+  border-radius: 1.15rem;
+  padding: 1rem;
+}
+
+.cta-map {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 72% 48%, rgba(34, 211, 238, 0.15), transparent 18rem),
+    radial-gradient(circle at 24% 28%, rgba(253, 230, 138, 0.18), transparent 14rem),
+    linear-gradient(135deg, rgba(28, 25, 23, 0.92), rgba(0, 0, 0, 0.98));
+}
+
+.cta-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(253, 230, 138, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 70% 48%, black, transparent 72%);
+}
+
+.archive-map-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #030303;
+  padding: 1rem;
+}
+
+.archive-note {
+  position: absolute;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.72);
+  padding: 0.55rem 0.7rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.36);
+}
+
+.archive-note p {
+  color: #f6b637;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.archive-note span {
+  display: block;
+  margin-top: 0.3rem;
+  color: white;
+  font-size: 0.78rem;
+}
+
+.archive-note-left {
+  left: 9%;
+  top: 22%;
+}
+
+.archive-note-right {
+  bottom: 16%;
+  right: 10%;
+}
+
+.atlas-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(34, 211, 238, 0.13), transparent 18rem),
+    radial-gradient(circle at 14% 12%, rgba(253, 230, 138, 0.12), transparent 16rem),
+    linear-gradient(180deg, rgba(28, 25, 23, 0.62), #000 36rem);
+}
+
+.atlas-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.atlas-map-grid {
+  background:
+    linear-gradient(rgba(253, 230, 138, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black, transparent 74%);
+}
+
+.atlas-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(253, 230, 138, 0.12);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%) rotate(-12deg);
+}
+
+.atlas-orbit-one {
+  width: 78%;
+  height: 42%;
+}
+
+.atlas-orbit-two {
+  width: 52%;
+  height: 76%;
+  border-color: rgba(34, 211, 238, 0.12);
+  transform: translate(-50%, -50%) rotate(24deg);
+}
+
+.atlas-pin {
+  position: absolute;
+  z-index: 2;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 9999px;
+  background: #fde68a;
+  box-shadow:
+    0 0 0 0.5rem rgba(253, 230, 138, 0.1),
+    0 0 24px rgba(253, 230, 138, 0.86);
+}
+
+.atlas-pin-large {
+  left: 50%;
+  top: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.atlas-postcard {
+  position: relative;
+  display: flex;
+  min-height: 30rem;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent 58%),
+    radial-gradient(circle at 58% 42%, rgba(253, 230, 138, 0.22), transparent 12rem),
+    radial-gradient(circle at 34% 36%, rgba(34, 211, 238, 0.14), transparent 14rem),
+    linear-gradient(135deg, rgba(68, 64, 60, 0.82), rgba(12, 10, 9, 0.98));
+  padding: 1.5rem;
+}
+
+.atlas-postcard::before {
+  content: "";
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(253, 230, 138, 0.12);
+  border-radius: 9999px;
+  transform: rotate(-10deg);
 }
 
 .country-flag-button {

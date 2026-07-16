@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Last Fan Standing | World Cup Battle Royale",
-  description: "A TxLINE-powered live survival game for every World Cup match.",
+  title: "Atlas | Live World Cup Fan Energy",
+  description: "Explore a living football globe where countries glow with fan reactions, predictions, chants, and match-room energy.",
 };
 
 export default function RootLayout({
