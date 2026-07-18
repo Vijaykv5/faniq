@@ -4,13 +4,13 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useEffect, useRef, useState } from "react";
 
-function truncateAddress(address: string, chars = 4) {
-  if (address.length <= chars * 2 + 3) return address;
-  return `${address.slice(0, chars)}...${address.slice(-chars)}`;
+function truncateAddress(address: string) {
+  if (address.length <= 9) return address;
+  return `${address.slice(0, 4)}...${address.slice(-4)}`;
 }
 
 export function SolanaWalletButton({ className = "" }: { className?: string }) {
-  const { connected, connecting, disconnect, publicKey, wallet } = useWallet();
+  const { connected, connecting, disconnect, publicKey } = useWallet();
   const { setVisible } = useWalletModal();
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -67,9 +67,6 @@ export function SolanaWalletButton({ className = "" }: { className?: string }) {
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen((open) => !open)}
       >
-        <span className="atlas-wallet-icon" aria-hidden="true">
-          <span>{wallet?.adapter.name.slice(0, 1) ?? "S"}</span>
-        </span>
         <span className="font-mono tabular-nums">{truncateAddress(address)}</span>
       </button>
 
