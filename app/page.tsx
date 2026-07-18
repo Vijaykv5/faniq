@@ -1,18 +1,19 @@
 import Image from "next/image";
 import { FifaScoreStrip } from "./components/fifa-score-strip";
+import { SolanaWalletButton } from "@/components/wallet/SolanaWalletButton";
 
 const steps = [
   {
-    label: "Choose a match",
-    text: "Enter any World Cup room and see the live pulse of the fans before the next moment breaks.",
+    label: "Open the globe",
+    text: "Start with a textured night-earth view where countries glow as fan energy gathers.",
   },
   {
     label: "Read the world",
-    text: "Atlas maps chants, reactions, predictions, and pressure into a country-by-country Fan Energy score.",
+    text: "Atlas maps chants, reactions, predictions, and pressure into country-by-country memory signals.",
   },
   {
-    label: "Survive the play",
-    text: "Lock your call on goals, saves, misses, and VAR. The room gets louder as the crowd gets sharper.",
+    label: "Follow the signal",
+    text: "Hover countries, inspect memory hubs, and watch routes connect the loudest football moments.",
   },
 ];
 
@@ -40,9 +41,7 @@ function Navbar() {
         >
           How it works
         </a>
-        <a href="/survival" className="primary-wallet-button">
-          Connect Wallet
-        </a>
+        <SolanaWalletButton />
       </nav>
     </header>
   );
@@ -80,11 +79,11 @@ function HeroSection() {
           Atlas turns football emotion into a living 3D globe, showing where fans are celebrating, predicting, arguing, and reacting in real time.
         </p>
         <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="/survival" className="hero-primary-action">
+          <a href="/atlas" className="hero-primary-action">
             Enter Atlas
           </a>
-          <a href="/survival?mode=create" className="hero-secondary-action">
-            View live rooms
+          <a href="#how-it-works" className="hero-secondary-action">
+            See how it works
           </a>
         </div>
       </div>
@@ -178,14 +177,14 @@ function FinalCta() {
             Enter the loudest room in football
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/52 sm:text-base">
-            Follow the globe, join a match room, and lock your read before the next goal, save, miss, or VAR check changes everything.
+            Follow the globe, connect your wallet, and explore the countries carrying the loudest memories.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="/survival" className="launch-button">
+            <a href="/atlas" className="launch-button">
               Open Atlas
             </a>
-            <a href="/survival?mode=create" className="hero-secondary-action">
-              Browse matches
+            <a href="#home" className="hero-secondary-action">
+              Back to top
             </a>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type FifaScore = {
   id: string;
@@ -71,6 +71,7 @@ function teamFlag(team: string) {
 export function FifaScoreStrip() {
   const [scores, setScores] = useState<FifaScore[]>([]);
   const [state, setState] = useState<"loading" | "success" | "error">("loading");
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -103,6 +104,35 @@ export function FifaScoreStrip() {
 
   const visibleScores = scores.length > 0 && scores.length < 6 ? [...scores, ...scores, ...scores] : scores;
 
+  useEffect(() => {
+    const marqueeElement = marqueeRef.current;
+    if (!marqueeElement || visibleScores.length === 0) return;
+    const tickerElement = marqueeElement;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let animationFrame = 0;
+    let previousTime = performance.now();
+    let offset = 0;
+    const pixelsPerSecond = 26;
+
+    function animateTicker(time: number) {
+      const marqueeWidth = tickerElement.scrollWidth / 2;
+      const deltaSeconds = (time - previousTime) / 1000;
+      previousTime = time;
+
+      offset = (offset + pixelsPerSecond * deltaSeconds) % marqueeWidth;
+      tickerElement.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      animationFrame = window.requestAnimationFrame(animateTicker);
+    }
+
+    animationFrame = window.requestAnimationFrame(animateTicker);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      tickerElement.style.transform = "";
+    };
+  }, [visibleScores.length]);
+
   function renderScore(score: FifaScore, index: number, group: string) {
     return (
       <span
@@ -133,7 +163,8 @@ export function FifaScoreStrip() {
           ) : null}
           {visibleScores.length > 0 ? (
             <div
-              className="score-marquee score-marquee-moving transform-gpu motion-safe:animate-[score-marquee-slide_18s_linear_infinite]"
+              ref={marqueeRef}
+              className="score-marquee transform-gpu"
               aria-live="polite"
             >
               <div className="score-marquee-group">{visibleScores.map((score, index) => renderScore(score, index, "a"))}</div>

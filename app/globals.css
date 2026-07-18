@@ -62,6 +62,151 @@ button:disabled {
   font-weight: 900;
 }
 
+.atlas-wallet-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.atlas-wallet-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  font-family:
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.78rem 1.35rem;
+  transition:
+    background-color 100ms ease-out,
+    border-color 100ms ease-out,
+    transform 100ms ease-out;
+}
+
+.atlas-wallet-button-disconnected {
+  background: #ffffff;
+  color: #050505;
+  box-shadow: 0 18px 54px rgba(255, 255, 255, 0.08);
+}
+
+.atlas-wallet-button-connected {
+  border-color: rgba(216, 180, 254, 0.62);
+  background: #5d30b7;
+  color: #ffffff;
+  box-shadow: 0 0 48px rgba(155, 69, 254, 0.24);
+}
+
+.atlas-wallet-button:not([disabled]):hover {
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.atlas-wallet-button-disconnected:not([disabled]):hover {
+  background: #f3f3f3;
+}
+
+.atlas-wallet-button-connected:not([disabled]):hover {
+  background: #6d3bd0;
+}
+
+.atlas-wallet-button:not([disabled]):active {
+  transform: translateY(1px);
+}
+
+.atlas-wallet-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.atlas-wallet-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.atlas-wallet-icon {
+  display: grid;
+  width: 1.85rem;
+  height: 1.85rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 0.55rem;
+  background: #f7ea31;
+  color: #050505;
+  font-size: 0.9rem;
+}
+
+.atlas-wallet-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.atlas-wallet-popover {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  right: 0;
+  z-index: 80;
+  display: grid;
+  min-width: 11rem;
+  gap: 0.25rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(5, 7, 13, 0.96);
+  padding: 0.45rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(18px);
+}
+
+.atlas-wallet-popover button {
+  min-height: 2.45rem;
+  border-radius: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  color: rgba(255, 255, 255, 0.84);
+  text-align: left;
+  transition: background-color 100ms ease-out;
+}
+
+.atlas-wallet-popover button:hover,
+.atlas-wallet-popover button:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.wallet-adapter-dropdown-list {
+  z-index: 80;
+  border: 1px solid rgba(216, 180, 254, 0.18);
+  background: rgba(5, 7, 13, 0.96);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+}
+
+.wallet-adapter-dropdown-list-item {
+  border-radius: 0.6rem;
+  font-family:
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+}
+
+.wallet-adapter-modal-wrapper {
+  border: 1px solid rgba(216, 180, 254, 0.18);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(155, 69, 254, 0.18), transparent 18rem),
+    #05070d;
+}
+
+.wallet-adapter-modal-title {
+  color: #ffffff;
+  font-family:
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  border-radius: 0.85rem;
+  font-family:
+    "Chalkboard SE", "Comic Sans MS", "Avenir Next", "Trebuchet MS", Arial, sans-serif;
+}
+
 .hero-primary-action,
 .hero-secondary-action,
 .launch-button {
@@ -171,6 +316,138 @@ button:disabled {
 
 .atlas-logo-mark {
   filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.12));
+}
+
+.atlas-control-panel {
+  filter: drop-shadow(0 24px 80px rgba(0, 0, 0, 0.36));
+}
+
+.loadscreen-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.loadscreen-bar {
+  height: 0.45rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.loadscreen-bar-fill {
+  display: block;
+  height: 100%;
+  width: 42%;
+  border-radius: inherit;
+  background: #9b45fe;
+  box-shadow: 0 0 28px rgba(155, 69, 254, 0.72);
+  animation: atlas-load-slide 1.2s ease-in-out infinite alternate;
+}
+
+.loadscreen-percent {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.country-memory-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.45);
+  animation: country-backdrop-in 180ms ease-out;
+}
+
+.country-memory-sheet {
+  width: 100%;
+  max-height: min(76vh, 42rem);
+  overflow-y: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.35rem 1.35rem 0 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    rgba(3, 3, 3, 0.94);
+  padding: 1.25rem;
+  box-shadow: 0 -28px 90px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(22px);
+  animation: country-sheet-in 220ms ease-out;
+}
+
+.country-memory-card {
+  min-height: 10rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.045);
+  padding: 1rem;
+  animation: country-card-in 260ms ease-out both;
+}
+
+@keyframes atlas-load-slide {
+  from {
+    transform: translateX(-12%);
+  }
+
+  to {
+    transform: translateX(152%);
+  }
+}
+
+@keyframes country-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes country-sheet-in {
+  from {
+    transform: translateY(1.5rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes country-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .country-memory-sheet {
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    max-width: 56rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadscreen-bar-fill,
+  .country-memory-backdrop,
+  .country-memory-sheet,
+  .country-memory-card {
+    animation: none;
+  }
 }
 
 .score-strip {
@@ -647,73 +924,6 @@ button:disabled {
   background:
     linear-gradient(90deg, transparent calc(50% - 1px), rgba(255, 255, 255, 0.32) 50%, transparent calc(50% + 1px)),
     radial-gradient(circle at center, transparent 0 2.3rem, rgba(255, 255, 255, 0.28) 2.4rem, transparent 2.5rem);
-}
-
-.survivor-platform {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  gap: 0.4rem;
-  border-radius: 9999px;
-  background: rgba(2, 6, 23, 0.68);
-  padding: 0.5rem 0.75rem;
-  font-size: 1.25rem;
-}
-
-.survival-arena {
-  position: relative;
-  min-height: 31rem;
-  overflow: hidden;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(103, 232, 249, 0.2);
-  background:
-    radial-gradient(circle at 50% 46%, rgba(8, 145, 178, 0.22), transparent 28%),
-    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.2), rgba(2, 6, 23, 0.96) 72%);
-}
-
-.survival-stands {
-  position: absolute;
-  inset: 1.25rem;
-  display: grid;
-  grid-template-columns: repeat(20, minmax(0, 1fr));
-  gap: 0.42rem;
-}
-
-.survival-dot {
-  aspect-ratio: 1;
-  width: 0.42rem;
-  justify-self: center;
-  align-self: center;
-  border-radius: 9999px;
-}
-
-.survival-dot-alive {
-  background: #67e8f9;
-  box-shadow: 0 0 12px rgba(103, 232, 249, 0.86);
-}
-
-.survival-dot-out {
-  background: #475569;
-  opacity: 0.4;
-}
-
-.survival-dot-ghost {
-  background: #c4b5fd;
-  box-shadow: 0 0 12px rgba(196, 181, 253, 0.72);
-}
-
-.survival-pitch {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(32rem, calc(100% - 2rem));
-  transform: translate(-50%, -50%);
-  border-radius: 1rem;
-  border: 1px solid rgba(190, 242, 100, 0.26);
-  background: rgba(2, 6, 23, 0.84);
-  padding: 1.25rem;
-  text-align: center;
-  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.62);
 }
 
 .site-backdrop {
