@@ -173,6 +173,16 @@ function chooseFixture(fixtures: AtlasLineupFixture[], fixtureId: string | null)
   return [...fixtures].sort((fixtureA, fixtureB) => (fixtureB.startTime ?? 0) - (fixtureA.startTime ?? 0))[0] ?? null;
 }
 
+function sortFixturesForPlayerScan(fixtures: AtlasLineupFixture[]) {
+  const now = Date.now();
+
+  return [...fixtures].sort((fixtureA, fixtureB) => {
+    const distanceA = Math.abs((fixtureA.startTime ?? now) - now);
+    const distanceB = Math.abs((fixtureB.startTime ?? now) - now);
+    return distanceA - distanceB;
+  });
+}
+
 function looksLikeLineupPlayer(record: TxLineRecord) {
   const hasPlayerName = Boolean(readText(record, ["preferredName", "PreferredName", "playerName", "PlayerName", "name", "Name", "fullName", "FullName"]));
   const hasLineupShape =
@@ -276,6 +286,15 @@ async function fetchFixtureLineupPayloads(client: ReturnType<typeof createTxLine
   return responses.filter((response): response is PromiseFulfilledResult<unknown> => response.status === "fulfilled").map((response) => response.value);
 }
 
+async function fetchPlayersForFixture(client: ReturnType<typeof createTxLineClient>, fixture: AtlasLineupFixture, country: string) {
+  const payloads = await fetchFixtureLineupPayloads(client, fixture.id);
+
+  return payloads
+    .flatMap((payload) => collectLineupRecords(payload))
+    .map((player) => normalizePlayer(player, fixture, country))
+    .filter((player): player is AtlasLineupPlayer => Boolean(player));
+}
+
 export async function GET(request: NextRequest) {
   const country = normalizeCountry(request.nextUrl.searchParams.get("country") ?? "");
   const fixtureId = request.nextUrl.searchParams.get("fixtureId");
@@ -311,42 +330,44 @@ export async function GET(request: NextRequest) {
         country,
         flag: getCountryFlag(country),
         fixture: null,
+        fixtures: [],
         players: [],
         source: "txline",
-        lineupType: "fixture",
+        lineupType: fixtureId ? "fixture" : "team",
         message: "No World Cup fixture found for this country in the sampled TxLINE window.",
       });
     }
 
-    const payloads = await fetchFixtureLineupPayloads(client, fixture.id);
-    const players = dedupePlayers(
-      payloads
-        .flatMap((payload) => collectLineupRecords(payload))
-        .map((player) => normalizePlayer(player, fixture, country))
-        .filter((player): player is AtlasLineupPlayer => Boolean(player)),
-    );
+    const fixtureScope = fixtureId ? [fixture] : sortFixturesForPlayerScan(fixtures).slice(0, 12);
+    const players = dedupePlayers((await Promise.all(fixtureScope.map((nextFixture) => fetchPlayersForFixture(client, nextFixture, country)))).flat());
 
     return NextResponse.json({
       country,
       flag: getCountryFlag(country),
       fixture,
+      fixtures: fixtureScope,
       players,
       source: "txline",
-      lineupType: "fixture",
+      lineupType: fixtureId ? "fixture" : "team",
       message:
         players.length > 0
-          ? "Lineups are fixture-specific and can change from match to match."
-          : "No lineup players were published for this fixture yet. TxLINE may publish lineups closer to kickoff or only for covered matches.",
+          ? fixtureId
+            ? "Lineups are fixture-specific and can change from match to match."
+            : "Players are aggregated from this country's TxLINE-covered World Cup fixtures."
+          : fixtureId
+            ? "No lineup players were published for this fixture yet. TxLINE may publish lineups closer to kickoff or only for covered matches."
+            : "No team players were published across this country's TxLINE-covered World Cup fixtures yet.",
     });
   } catch {
     return NextResponse.json({
       country,
       flag: getCountryFlag(country),
       fixture: null,
+      fixtures: [],
       players: [],
       source: "unavailable",
-      lineupType: "fixture",
-      message: "TxLINE lineup data is unavailable right now.",
+      lineupType: fixtureId ? "fixture" : "team",
+      message: "TxLINE player data is unavailable right now.",
     });
   }
 }

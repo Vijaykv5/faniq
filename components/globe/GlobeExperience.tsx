@@ -138,6 +138,7 @@ function CountryInsightPanel({
   const nextCountdown = formatCountdown(insight.nextMatch?.startTime);
   const dataUnavailable = insight.source === "unavailable";
   const hasNoWorldCupFixtures = insight.worldCupParticipant === false;
+  const createMemoryHref = `/create/memory?country=${encodeURIComponent(activeCountry)}`;
 
   return (
     <aside className="pointer-events-auto fixed bottom-32 left-4 right-4 z-20 sm:left-auto sm:right-6 sm:w-[25rem] lg:right-8">
@@ -149,6 +150,15 @@ function CountryInsightPanel({
               {activeCountry} <span aria-hidden="true">{insight.flag}</span>
             </h2>
           </div>
+          {selected ? (
+            <Link
+              href={createMemoryHref}
+              title={`Create a fan memory for ${activeCountry}`}
+              className="shrink-0 rounded-full bg-[#f7b733] px-3 py-2 text-xs font-black text-black transition-colors duration-100 hover:bg-[#fcd34d] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Mint Memory
+            </Link>
+          ) : null}
         </div>
 
         <div className="mt-5 grid grid-cols-3 gap-2">

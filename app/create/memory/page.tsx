@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description: "Create and prepare an Atlas fan memory for minting.",
 };
 
-export default function CreateMemoryPage() {
-  return <CreateMemoryExperience />;
+export default async function CreateMemoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ country?: string }>;
+}) {
+  const { country } = await searchParams;
+
+  return <CreateMemoryExperience initialCountry={country} />;
 }

@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
-import { COUNTRY_COORDS } from "@/lib/atlas-globe-data";
+import { COUNTRY_COORDS, resolveAtlasCountrySearch } from "@/lib/atlas-globe-data";
 import { AtlasModeSwitch } from "@/components/globe/AtlasModeSwitch";
 import { SolanaWalletButton } from "@/components/wallet/SolanaWalletButton";
 
 const ATLAS_COUNTRY_OPTIONS = Object.keys(COUNTRY_COORDS);
 
-export function CreateMemoryExperience() {
+export function CreateMemoryExperience({ initialCountry = "Argentina" }: { initialCountry?: string }) {
   const [fileName, setFileName] = useState("");
   const [status, setStatus] = useState<string | null>(null);
+  const selectedInitialCountry = resolveAtlasCountrySearch(initialCountry) ?? "Argentina";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,7 +79,7 @@ export function CreateMemoryExperience() {
                 id="memory-country"
                 name="country"
                 required
-                defaultValue="Argentina"
+                defaultValue={selectedInitialCountry}
                 autoComplete="country-name"
                 className="min-h-11 rounded-xl border border-white/10 bg-white/[0.045] px-3 text-sm font-bold text-white outline-none focus-visible:ring-2 focus-visible:ring-[#f7b733]"
               >
