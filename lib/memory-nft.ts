@@ -1,14 +1,13 @@
 "use client";
 
 import { createV1, mplCore } from "@metaplex-foundation/mpl-core";
-import { createGenericFileFromBrowserFile, generateSigner, publicKey as umiPublicKey, type WrappedInstruction } from "@metaplex-foundation/umi";
+import { generateSigner, publicKey as umiPublicKey, type WrappedInstruction } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
-import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
 import { clusterApiUrl, PublicKey } from "@solana/web3.js";
 import type { WalletContextState } from "@solana/wallet-adapter-react";
-import { buildRegisterMemoryInstruction, FANIQ_PASSPORT_PROGRAM_ID } from "@/lib/faniq-passport-program";
+import { buildRegisterMemoryInstruction } from "@/lib/faniq-passport-program";
 
 export type MintMemoryInput = {
   wallet: WalletContextState;
@@ -50,6 +49,49 @@ function toUmiInstruction(item: ReturnType<typeof buildRegisterMemoryInstruction
   };
 }
 
+async function uploadMemoryMetadata({
+  title,
+  name,
+  country,
+  note,
+  image,
+  passportPublicKey,
+}: {
+  title: string;
+  name: string;
+  country: string;
+  note: string;
+  image: File;
+  passportPublicKey?: string;
+}) {
+  const formData = new FormData();
+  formData.set("title", title);
+  formData.set("name", name);
+  formData.set("country", country);
+  formData.set("note", note);
+  if (passportPublicKey) formData.set("passportPublicKey", passportPublicKey);
+  formData.set("image", image);
+
+  const response = await fetch("/api/memory/upload", {
+    method: "POST",
+    body: formData,
+  });
+  const payload = (await response.json().catch(() => ({}))) as {
+    imageUri?: string;
+    metadataUri?: string;
+    error?: string;
+  };
+
+  if (!response.ok || !payload.imageUri || !payload.metadataUri) {
+    throw new Error(payload.error || "Could not upload memory metadata.");
+  }
+
+  return {
+    imageUri: payload.imageUri,
+    metadataUri: payload.metadataUri,
+  };
+}
+
 export async function mintMemoryNft({ wallet, title, name, country, note, image, passportPublicKey, onStatus }: MintMemoryInput): Promise<MintMemoryResult> {
   if (!wallet.connected || !wallet.publicKey || !wallet.signTransaction) {
     throw new Error("Connect a wallet that can sign transactions.");
@@ -63,37 +105,10 @@ export async function mintMemoryNft({ wallet, title, name, country, note, image,
 
   const umi = createUmi(DEVNET_RPC_URL)
     .use(mplCore())
-    .use(walletAdapterIdentity(wallet))
-    .use(
-      irysUploader({
-        address: "https://devnet.irys.xyz",
-        providerUrl: DEVNET_RPC_URL,
-      }),
-    );
-  const imageFile = await createGenericFileFromBrowserFile(image, {
-    displayName: image.name,
-    contentType: image.type || "image/png",
-  });
-  onStatus?.("Uploading your celebration image...");
-  const [imageUri] = await umi.uploader.upload([imageFile]);
-  onStatus?.("Saving memory metadata...");
-  const metadataUri = await umi.uploader.uploadJson({
-    name: title,
-    description: note || `${name} minted a ${country} fan memory on FANIQ.`,
-    image: imageUri,
-    attributes: [
-      { trait_type: "Country", value: country },
-      { trait_type: "Creator Name", value: name },
-      { trait_type: "Memory Type", value: "Celebration" },
-      { trait_type: "Network", value: "Solana Devnet" },
-      { trait_type: "Fan Passport", value: passportPublicKey ?? "FANIQ Passport" },
-      { trait_type: "Passport Program", value: FANIQ_PASSPORT_PROGRAM_ID },
-    ],
-    properties: {
-      category: "image",
-      files: [{ uri: imageUri, type: image.type || "image/png" }],
-    },
-  });
+    .use(walletAdapterIdentity(wallet));
+
+  onStatus?.("Uploading memory on the server...");
+  const { imageUri, metadataUri } = await uploadMemoryMetadata({ title, name, country, note, image, passportPublicKey });
   const asset = generateSigner(umi);
   const owner = wallet.publicKey;
   const memoryLink = buildRegisterMemoryInstruction({
