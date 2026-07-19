@@ -39,11 +39,29 @@ The Anchor program lives in:
 contract/programs/faniq_passport
 ```
 
+Deployed devnet program:
+
+```text
+FANXexs6P2Fst4NiiCdH9jx39sxPCGRRVpC2nevL5C6U
+```
+
+[View on Solana Explorer](https://explorer.solana.com/address/FANXexs6P2Fst4NiiCdH9jx39sxPCGRRVpC2nevL5C6U?cluster=devnet)
+
 It enforces the core identity rules:
 
 - one wallet can create one fan passport
 - the supporter country is locked after passport creation
 - memories can be registered against a passport
+
+Program accounts:
+
+- **FanPassport PDA:** `["passport", owner]`
+- **MemoryRecord PDA:** `["memory", owner, nft_mint]`
+
+Main instructions:
+
+- `create_passport(country)` - creates the locked fan passport
+- `register_memory(memory_country, nft_mint, metadata_uri)` - links a memory NFT to the passport
 
 Useful commands:
 
