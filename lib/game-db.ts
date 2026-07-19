@@ -241,7 +241,7 @@ export function toDbMintedMemory(row: Record<string, unknown>): DbMintedMemory {
   return {
     asset: asString(row.asset),
     owner: asString(row.owner),
-    title: asString(row.title, "Atlas Memory"),
+    title: asString(row.title, "FANIQ Memory"),
     name: asString(row.name, "Fan"),
     country: asString(row.country, "Global"),
     note: asString(row.note),

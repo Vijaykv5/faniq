@@ -4,7 +4,7 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Atlas | Live World Cup Fan Energy",
+  title: "FANIQ | Live World Cup Fan Energy",
   description: "Explore a living football globe where countries glow with fan reactions, predictions, chants, and match-room energy.",
 };
 

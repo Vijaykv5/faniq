@@ -9,7 +9,7 @@ const steps = [
   },
   {
     label: "Read the world",
-    text: "Atlas maps chants, reactions, predictions, and pressure into country-by-country memory signals.",
+    text: "FANIQ maps chants, reactions and pressure into country-by-country memory signals.",
   },
   {
     label: "Follow the signal",
@@ -33,7 +33,7 @@ function Navbar() {
           className="flex min-h-11 items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         >
           <span className="atlas-logo-mark" aria-hidden="true" />
-          <span className="text-base font-black lowercase tracking-tight text-white">atlas</span>
+          <span className="text-base font-black lowercase tracking-tight text-white">FANIQ</span>
         </a>
         <a
           href="#how-it-works"
@@ -51,7 +51,7 @@ function ConnectHeroImage({ className = "" }: { className?: string }) {
   return (
     <Image
       src="/connect-hero.svg"
-      alt="Atlas world map with connected fan energy pins"
+      alt="FANIQ world map with connected fan energy pins"
       width={984}
       height={344}
       priority
@@ -76,11 +76,11 @@ function HeroSection() {
           The fan world is alive
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-6 text-white/56 sm:text-base">
-          Atlas turns football emotion into a living 3D globe, showing where fans are celebrating, predicting, arguing, and reacting in real time.
+           Turn your football emotion into a living 3D globe, showing where fans are celebrating, predicting, arguing and reacting in real time.
         </p>
         <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="/atlas" className="hero-primary-action">
-            Enter Atlas
+            Enter FANIQ
           </a>
           <a href="#how-it-works" className="hero-secondary-action">
             See how it works
@@ -181,10 +181,7 @@ function FinalCta() {
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="/atlas" className="launch-button">
-              Open Atlas
-            </a>
-            <a href="#home" className="hero-secondary-action">
-              Back to top
+              Open FANIQ
             </a>
           </div>
         </div>

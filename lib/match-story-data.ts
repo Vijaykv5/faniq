@@ -404,7 +404,7 @@ function promptForMoment(fixture: MatchStoryFixture | null, momentType: Structur
     "generic fictional players only",
     "no real player likenesses, no club logos, no sponsor text",
     "bold comic ink, expressive crowd, cinematic stadium lights",
-    "Atlas brand mood: deep space black with warm orange highlights",
+    "FANIQ brand mood: deep space black with warm orange highlights",
     `${teams}: ${caption}`,
     `moment type: ${momentType}`,
   ].join(", ");
@@ -655,7 +655,7 @@ export async function summarizeIntervalsWithOpenRouter({
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-      "X-Title": "Atlas Match Intervals",
+      "X-Title": "FANIQ Match Intervals",
     },
     body: JSON.stringify({
       model: process.env.OPENROUTER_INTERVAL_MODEL ?? "cohere/north-mini-code:free",

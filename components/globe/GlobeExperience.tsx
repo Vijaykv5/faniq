@@ -18,7 +18,7 @@ function GlobeLoadingState() {
   return (
     <div className="grid h-svh min-h-[640px] w-screen place-items-center bg-[#05070d] text-white">
       <div className="w-64 text-center">
-        <p className="loadscreen-title">atlas</p>
+        <p className="loadscreen-title">FANIQ</p>
         <div className="loadscreen-bar mt-4">
           <span className="loadscreen-bar-fill" />
         </div>
@@ -204,7 +204,6 @@ function CountryInsightPanel({
         ) : hasNoWorldCupFixtures ? (
           <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.045] p-4">
             <p className="text-sm font-black text-white">This country has not participated in the World Cup 2026.</p>
-            {/* <p className="mt-2 text-sm leading-6 text-white/48">Atlas only shows TxLINE-covered World Cup matches here, so friendlies are hidden.</p> */}
           </div>
         ) : (
           <div className="mt-4 grid gap-4">
@@ -496,7 +495,7 @@ export function GlobeExperience() {
             className="flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 backdrop-blur-md transition-colors duration-100 hover:bg-white/[0.06] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070d]"
           >
             <span className="atlas-logo-mark" aria-hidden="true" />
-            <span className="text-base font-black lowercase tracking-tight text-white">atlas</span>
+            <span className="text-base font-black lowercase tracking-tight text-white">FANIQ</span>
           </Link>
           <SolanaWalletButton />
         </nav>

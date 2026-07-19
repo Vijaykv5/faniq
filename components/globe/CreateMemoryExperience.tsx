@@ -107,7 +107,7 @@ export function CreateMemoryExperience({ initialCountry = "Argentina" }: { initi
             className="flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 backdrop-blur-md transition-colors duration-100 hover:bg-white/[0.06] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070d]"
           >
             <span className="atlas-logo-mark" aria-hidden="true" />
-            <span className="text-base font-black lowercase tracking-tight text-white">atlas</span>
+            <span className="text-base font-black lowercase tracking-tight text-white">FANIQ</span>
           </Link>
           <SolanaWalletButton />
         </nav>

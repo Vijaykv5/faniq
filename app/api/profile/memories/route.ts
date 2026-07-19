@@ -103,7 +103,7 @@ async function loadDasMemories(owner: string): Promise<DbMintedMemory[]> {
       return {
         asset: asset.id,
         owner,
-        title: asset.content?.metadata?.name ?? "Atlas Memory",
+        title: asset.content?.metadata?.name ?? "FANIQ Memory",
         name: attribute(asset, "Creator Name") || "Fan",
         country,
         note: asset.content?.metadata?.description ?? "",
@@ -136,7 +136,7 @@ async function loadCoreOwnerMemories(owner: string): Promise<DbMintedMemory[]> {
       return {
         asset: assetAddress,
         owner,
-        title: metadataText(metadata, "name") || asset.name || "Atlas Memory",
+        title: metadataText(metadata, "name") || asset.name || "FANIQ Memory",
         name: metadataAttribute(metadata, "Creator Name") || "Fan",
         country,
         note: metadataText(metadata, "description"),
@@ -203,7 +203,7 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as MemoryBody;
     const asset = cleanText(body.asset, 80);
     const owner = cleanText(body.owner, 80);
-    const title = cleanText(body.title, 120) || "Atlas Memory";
+    const title = cleanText(body.title, 120) || "FANIQ Memory";
     const name = cleanText(body.name, 80) || "Fan";
     const country = resolveAtlasCountrySearch(cleanText(body.country, 80));
     const note = cleanText(body.note, 500);

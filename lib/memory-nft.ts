@@ -59,7 +59,7 @@ export async function mintMemoryNft({ wallet, title, name, country, note, image,
   onStatus?.("Preparing NFT...");
   const metadataUri = await umi.uploader.uploadJson({
     name: title,
-    description: note || `${name} minted a ${country} fan memory on Atlas.`,
+    description: note || `${name} minted a ${country} fan memory on FANIQ.`,
     image: imageUri,
     attributes: [
       { trait_type: "Country", value: country },

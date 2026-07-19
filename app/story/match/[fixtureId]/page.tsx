@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MatchStoryExperience } from "@/components/story/MatchStoryExperience";
 
 export const metadata: Metadata = {
-  title: "Match Data | Atlas",
+  title: "Match Data | FANIQ",
   description: "Inspect TxLINE fixture and score coverage for a World Cup match.",
 };
 

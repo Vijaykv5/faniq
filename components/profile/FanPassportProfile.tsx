@@ -251,7 +251,7 @@ export function FanPassportProfile() {
             className="flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 backdrop-blur-md transition-colors duration-100 hover:bg-white/[0.06] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8b4fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070d]"
           >
             <span className="atlas-logo-mark" aria-hidden="true" />
-            <span className="text-base font-black lowercase tracking-tight text-white">atlas</span>
+            <span className="text-base font-black lowercase tracking-tight text-white">FANIQ</span>
           </Link>
           <SolanaWalletButton />
         </nav>
@@ -304,7 +304,7 @@ export function FanPassportProfile() {
 
                   <div className="grid gap-3">
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {field("Surname", "ATLAS")}
+                      {field("Surname", "FANIQ")}
                       {field("Passport No.", passportNumber(address))}
                       {field("Given Name", shortAddress(address))}
                       {field("Date of Issue", passport ? formatDate(passport.createdAt) : "Pending")}
@@ -421,7 +421,7 @@ export function FanPassportProfile() {
                           <h3 className="mt-1 line-clamp-2 text-xl font-black text-white">{memory.title}</h3>
                         </div>
                         <p className="line-clamp-2 min-h-10 text-sm font-bold leading-5 text-white/50">
-                          {memory.note || `${memory.name} minted this Atlas fan memory.`}
+                          {memory.note || `${memory.name} minted this FANIQ fan memory.`}
                         </p>
                         <div className="flex items-center justify-between gap-3 text-xs font-bold text-white/38">
                           <span>{formatDate(memory.mintedAt)}</span>

@@ -286,7 +286,7 @@ export function MatchStoryExperience({ fixtureId }: { fixtureId: string }) {
             href="/atlas"
             className="inline-flex min-h-11 items-center rounded-full border border-white/12 bg-white/[0.04] px-4 text-sm font-black text-white transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f7b733] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
-            Back to Atlas
+            Back to FANIQ
           </Link>
           <SolanaWalletButton />
         </nav>
